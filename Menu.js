@@ -18,9 +18,9 @@ export default function Menu( { navigation }) {
         <ListItem bottomDivider >
           <ListItem.Content>
             <ListItem.Title style={{fontSize: 18}}>{item.value}</ListItem.Title>
-            <Text style={{marginLeft: 320, marginTop: -40}} onPress={() => navigation.navigate('Maps')}>
-          <Icon name="delete" size={30} color="grey" />
-        </Text>
+        <Text onPress={() => navigation.navigate('Maps', item.value)}>
+          show on map <Icon name="keyboard-arrow-right"/></Text>
+          
           </ListItem.Content>
         </ListItem>
         </View>
@@ -28,11 +28,10 @@ export default function Menu( { navigation }) {
     
     return(
         <View style={styles.container}>
-            <Text>Moi</Text>
-            <Input placeholder='Type in address' label='PLACEFINDER' onChangeText={address => setAddress(address)} 
+            <Input placeholder='Type in address and city' label='PLACEFINDER' onChangeText={address => setAddress(address)} 
             value={address}/>
-        <View style={styles.button}>
-            <Button raised icon={{name: 'save', color: '#fff'}} onPress={saveList} title="SAVE" />
+        <View>
+            <Button buttonStyle={styles.button} raised icon={{name: 'save', color: '#fff'}} onPress={saveList} title="SAVE" />
         </ View>
         <FlatList
         keyExtractor={keyExtractor = (item, index) => index.toString()}
@@ -50,16 +49,43 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
    
   },
-  button: {
-    height: 100, 
-    width: 150,
-    marginLeft: 110,
-    marginRight: 110
+  list: {
+    flex: 1,
+    //justifyContent: 'center',
+    //backgroundColor: '#ecf0f1',
+    padding: 8,
+    flexDirection:'row',
+    //alignItems:'center'
+  },
+  button: { 
+    width: 370,
+    backgroundColor: '#AAAAAA',
+    marginLeft: 10
   },
   note:{
     color: 'grey',
     marginTop: -50,
     marginLeft: 10
+  },
+  icon: {
+    flex: 1,
+    flexDirection: 'row',
+    alignContent: 'center',
+    justifyContent: 'flex-start',
+    marginLeft: 245
+  },
+  icon: {
+    color: '#bbbbbb',
+    fontSize: 14,
+    textAlign: 'center',
+    marginLeft: 245,
+  },
+  arrow: {
+    fontSize: 21,
+  color: '#bbbbbb',
+  textAlign: 'center',
+  marginLeft: 3,
+  marginTop: 5
   }
 });
 
