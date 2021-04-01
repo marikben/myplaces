@@ -8,8 +8,7 @@ export default function Menu( { navigation }) {
 
     const saveList = () => {
         data.push({value: address})
-        //setItems([...items, {item}])
-        console.log(data)
+        //console.log(data)
         setAddress('');
       };
 
@@ -17,10 +16,16 @@ export default function Menu( { navigation }) {
         <View>
         <ListItem bottomDivider >
           <ListItem.Content>
-            <ListItem.Title style={{fontSize: 18}}>{item.value}</ListItem.Title>
-        <Text onPress={() => navigation.navigate('Maps', item.value)}>
-          show on map <Icon name="keyboard-arrow-right"/></Text>
-          
+            <ListItem.Title style={{fontSize: 18}}>{item.value.length < 20
+                ? `${item.value}`
+                : `${item.value.substring(0, 20)}...`}</ListItem.Title>
+            <View style={styles.icon}>
+            <Text onPress={() => navigation.navigate('Maps', item.value)} style={{
+                    fontSize: 18,
+                    color: "#9C9C9C"
+                }}>show on map</Text>
+            <Icon name="keyboard-arrow-right" size={25} iconStyle={{marginTop: 3, color: '#9C9C9C'}} />
+        </View>
           </ListItem.Content>
         </ListItem>
         </View>
@@ -49,43 +54,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
    
   },
-  list: {
-    flex: 1,
-    //justifyContent: 'center',
-    //backgroundColor: '#ecf0f1',
-    padding: 8,
-    flexDirection:'row',
-    //alignItems:'center'
-  },
   button: { 
     width: 370,
     backgroundColor: '#AAAAAA',
     marginLeft: 10
   },
-  note:{
-    color: 'grey',
-    marginTop: -50,
-    marginLeft: 10
-  },
   icon: {
-    flex: 1,
-    flexDirection: 'row',
-    alignContent: 'center',
-    justifyContent: 'flex-start',
-    marginLeft: 245
-  },
-  icon: {
-    color: '#bbbbbb',
-    fontSize: 14,
-    textAlign: 'center',
-    marginLeft: 245,
-  },
-  arrow: {
-    fontSize: 21,
-  color: '#bbbbbb',
-  textAlign: 'center',
-  marginLeft: 3,
-  marginTop: 5
-  }
+      paddingVertical: 15,
+      paddingHorizontal: 10,
+      marginLeft: 210,
+      marginTop: -40,
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center"}
+  ,
+
 });
 
